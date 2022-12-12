@@ -196,8 +196,8 @@
 
             Dictionary<string, AzureKeyVaultKeyStoreProvider> keyStoreProviderMap = new Dictionary<string, AzureKeyVaultKeyStoreProvider>
             {
-                { akvKeyVault1, azureKeyVaultKeyStoreProviderTenant1 },
-                { akvKeyVault2, azureKeyVaultKeyStoreProviderTenant2 }
+                { new Uri(akvKeyVault1).Host, azureKeyVaultKeyStoreProviderTenant1 },
+                { new Uri(akvKeyVault2).Host, azureKeyVaultKeyStoreProviderTenant2 }
             };
 
             MultiTenantAkvKeyStoreProvider multiTenantAkvKeyStoreProvider = new MultiTenantAkvKeyStoreProvider(keyStoreProviderMap);

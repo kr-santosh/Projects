@@ -23,7 +23,9 @@
 
         public override byte[] UnwrapKey(string masterKeyPath, KeyEncryptionKeyAlgorithm encryptionAlgorithm, byte[] encryptedKey)
         {
-            if (this.keyStoreProviderMap.TryGetValue(masterKeyPath, out AzureKeyVaultKeyStoreProvider azureKeyVaultKeyStoreProvider))
+            string keyVault = new Uri(masterKeyPath).Host;
+
+            if (this.keyStoreProviderMap.TryGetValue(keyVault, out AzureKeyVaultKeyStoreProvider azureKeyVaultKeyStoreProvider))
             {
                 return azureKeyVaultKeyStoreProvider.UnwrapKey(masterKeyPath, encryptionAlgorithm, encryptedKey);
             }
@@ -35,7 +37,9 @@
 
         public override byte[] WrapKey(string masterKeyPath, KeyEncryptionKeyAlgorithm encryptionAlgorithm, byte[] key)
         {
-            if (this.keyStoreProviderMap.TryGetValue(masterKeyPath, out AzureKeyVaultKeyStoreProvider azureKeyVaultKeyStoreProvider))
+            string keyVault = new Uri(masterKeyPath).Host;            
+
+            if (this.keyStoreProviderMap.TryGetValue(keyVault, out AzureKeyVaultKeyStoreProvider azureKeyVaultKeyStoreProvider))
             {
                 return azureKeyVaultKeyStoreProvider.WrapKey(masterKeyPath, encryptionAlgorithm, key);
             }
@@ -47,7 +51,9 @@
 
         public override byte[] Sign(string masterKeyPath, bool allowEnclaveComputations)
         {
-            if (this.keyStoreProviderMap.TryGetValue(masterKeyPath, out AzureKeyVaultKeyStoreProvider azureKeyVaultKeyStoreProvider))
+            string keyVault = new Uri(masterKeyPath).Host;
+
+            if (this.keyStoreProviderMap.TryGetValue(keyVault, out AzureKeyVaultKeyStoreProvider azureKeyVaultKeyStoreProvider))
             {
                 return azureKeyVaultKeyStoreProvider.Sign(masterKeyPath, allowEnclaveComputations);
             }
@@ -59,7 +65,9 @@
 
         public override bool Verify(string masterKeyPath, bool allowEnclaveComputations, byte[] signature)
         {
-            if (this.keyStoreProviderMap.TryGetValue(masterKeyPath, out AzureKeyVaultKeyStoreProvider azureKeyVaultKeyStoreProvider))
+            string keyVault = new Uri(masterKeyPath).Host;
+
+            if (this.keyStoreProviderMap.TryGetValue(keyVault, out AzureKeyVaultKeyStoreProvider azureKeyVaultKeyStoreProvider))
             {
                 return azureKeyVaultKeyStoreProvider.Verify(masterKeyPath, allowEnclaveComputations, signature);
             }
