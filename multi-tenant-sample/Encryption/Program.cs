@@ -315,8 +315,8 @@
 
             Console.WriteLine("Query results : {0}", readDocs.Count);
 
-            foreach (SalesOrder itr in readDocs.Resource)
-                Console.WriteLine(JsonConvert.SerializeObject(itr, Formatting.Indented));
+            foreach (SalesOrder doc in readDocs.Resource)
+                Console.WriteLine(JsonConvert.SerializeObject(doc, Formatting.Indented));
 
             Console.WriteLine("\n");
 
